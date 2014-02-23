@@ -11,5 +11,11 @@ post '/rolls' do
 
   @roll = value ? Roll.create({ value: value }) : Roll.create
 
-  erb :index  # HINT: what does this do? what should we do instead?
+  # if the request is an AJAX request, only respond with the _die_image partial
+  if request.xhr?
+    # layout false tells sinatra not to render this template inside the layout.erb
+    erb :_die_image, layout: false
+  else
+    erb :index
+  end
 end

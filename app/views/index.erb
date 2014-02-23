@@ -8,7 +8,8 @@
 
   <div id="die">
     <% if @roll %>
-      <img src="/<%= @roll.value %>.png" title="<%= @roll.value %>" alt="the roll">
+      <%# reusing the partial template.  Note, I do not want the partial rendered in the layout.erb %>
+      <%= erb :_die_image, layout: false %>
     <% end %>
   </div>
 
