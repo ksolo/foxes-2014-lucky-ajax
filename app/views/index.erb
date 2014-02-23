@@ -2,7 +2,13 @@
   <h1>Simplest Possible AJAX</h1>
   <p>This contrived app will simulate a roll of a 6-sided die.</p>
 
+  <%# NOTE: The call to rand is done 1x when the page loads.  When using %>
+  <%# AJAX, the page does not refresh so the value will stay the same %>
+
+  <%# Alternatively the hidden field could contain an instance variable declared on the server%>
+
   <form method="post" action="/rolls">
+    <input type="hidden" name="value" value="<%= rand(1..6) %>">
     <input type="submit" value="Roll the Die">
   </form>
 

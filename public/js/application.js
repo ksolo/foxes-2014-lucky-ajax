@@ -1,26 +1,15 @@
 $(document).ready(function () {
 
-  // PSEUDO-CODE:
-  //   1- intercept the form submission event using jQuery
-  //   2- prevent the default action for that event from happening
-  //   3- generate a random number between 1 and 6 using JavaScript
-  //   4- use jQuery to submit an AJAX post to the form's action
-  //   5- when the AJAX post is done, replace the contents of the "#die" DIV in the DOM using jQuery
-
   // Bind a sumbission event handler to the form
   $('form').submit(function(event){
     // Stop the browser from submitting the form
     event.preventDefault();
 
-    // Generate random Number
-    var num = Math.floor(Math.random() * 6) + 1;
-
     // Grab the url the form is being submitted
     var url = $(this).attr('action');
 
-    // Prepare a key:value pairing of the random number generated to the
-    // what the server is expecting (params[:value])
-    var data = {value: num}
+    // Grab data from the form and serialize it as a url-encoded form
+    var data = $(this).serialize();
 
     // AJAX Time!!!
     $.post(url, data, function(serverResponse, status, request){
