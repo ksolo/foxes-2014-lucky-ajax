@@ -11,10 +11,12 @@ post '/rolls' do
 
   @roll = value ? Roll.create({ value: value }) : Roll.create
 
-  # if the request is an AJAX request, only respond with the _die_image partial
   if request.xhr?
-    # layout false tells sinatra not to render this template inside the layout.erb
-    erb :_die_image, layout: false
+    # updates the content-type header to JSON
+    # https://en.wikipedia.org/wiki/Json#MIME_type
+    # Content-Type: application/json
+    content_type :json
+    @roll.to_json
   else
     erb :index
   end
